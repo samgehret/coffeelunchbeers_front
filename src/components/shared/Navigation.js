@@ -29,7 +29,7 @@ export default withAuth(class Navigation extends React.Component {
         <li><Link to='/profile'>Profile</Link></li>
       </ul>
       : <ul className='auth-nav'>
-        <li><a href='javascript:void(0)' onClick={this.props.auth.login}>Login</a></li>
+        <li><Link className='nav-link' to='/login'> Login </Link></li>
         <li><Link to='/register'>Register</Link></li>
       </ul>
     return (
