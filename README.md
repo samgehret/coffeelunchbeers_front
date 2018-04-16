@@ -1,7 +1,7 @@
 # This will serve as the planninn information initially.
 
 ## Basic Concept
-This application is created by GA students for GA students. It can be used for 3 main functions:
+This application is created by GA students for GA students. It can be used for 2 main functions:
 1. Log Meetups and Requirements for Graduation Requirements.
 2. Create and Post fun reviews on surrounding areas where students can eat lunch or go to happy hour with fellow students.
 
