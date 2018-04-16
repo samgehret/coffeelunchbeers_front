@@ -9,7 +9,8 @@ class Signup extends Component {
       lastName: '',
       email: '',
       login: '',
-      mobilePhone: ''
+      mobilePhone: '',
+      password: ''
     }
 
     this.handleInput = this.handleInput.bind(this)
@@ -27,8 +28,8 @@ class Signup extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      login: this.state.email,
-      mobilePhone: this.state.mobilePhone
+      mobilePhone: this.state.mobilePhone,
+      password: this.state.password
     })
   }
   render () {
@@ -52,6 +53,9 @@ class Signup extends Component {
           <input type='text' name='login' maxLength='25' onChange={this.handleInput} />
           <label>Phone Number</label>
           <input type='text' name='mobilePhone' maxLength='25' onChange={this.handleInput} />
+          <label>Password</label>
+          <input type='password' name='password' maxLength='25' onChange={this.handleInput} />
+
 
           <input value='submit' type='submit' onClick={this.handleSignUp} />
         </form>
