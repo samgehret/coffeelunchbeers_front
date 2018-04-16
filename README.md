@@ -13,21 +13,21 @@ This application is created by GA students for GA students. It can be used for 3
 ### Models
 - This applicationn will have fully secured authentication and authorization. I will be using an API from a service called Okta to handle all user mananement and authentication, so a user model will not be required in my application.
 - Places (for meetups, lunch, and beers):
-  -Title
-  -Summary
-  -Author
-  -Location
-  -Date
-  -Attendees (Array)
-  -Photo(s)
-  -Comments
+  - Title
+  - Summary
+  - Author
+  - Location
+  - Date
+  - Attendees (Array)
+  - Photo(s)
+  - Comments
 
--Attendees:
-  -Name
-  -Email
--Comments:
-  -Text
-  -Author
+- Attendees:
+  - Name
+  - Email
+- Comments:
+  - Text
+  - Author
 
 
 ##### MVP:
