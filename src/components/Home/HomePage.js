@@ -6,23 +6,23 @@ export default withAuth(class Home extends Component {
   constructor (props) {
     super(props)
   }
-  async componentDidMount () {
-    var token = await this.props.auth.getAccessToken()
-    console.log(token)
-    console.log('home')
-    try {
-      const response = await fetch('http://localhost:3001/users/list', {
-        headers: {
-          Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
-        }
-      })
-      const data = await response.json()
-      console.log(data)
-    } catch (err) {
+  // async componentDidMount () {
+  //   var token = await this.props.auth.getAccessToken()
+  //   // console.log(token)
+  //   // console.log('home')
+  //   try {
+  //     const response = await fetch('http://localhost:3001/users/list', {
+  //       headers: {
+  //         Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
+  //       }
+  //     })
+  //     const data = await response.json()
+  //     console.log(data)
+  //   } catch (err) {
 
-        // handle error as needed
-    }
-  }
+  //       // handle error as needed
+  //   }
+  // }
 
       // handle error as needed
 

@@ -16,7 +16,7 @@ export default withAuth(class ProfilePage extends React.Component {
     this.props.auth.getUser()
       .then(user => {
         this.setState({user})
-        // console.log(user)
+        console.log(user)
       })
   }
 
@@ -38,8 +38,8 @@ export default withAuth(class ProfilePage extends React.Component {
   async componentDidMount () {
     this.getCurrentUser()
     this.getUsers()
-    var token = await this.props.auth.getAccessToken()
-    console.log(token)
+    // var token = await this.props.auth.getAccessToken()
+    // console.log(token)
     try {
       const response = await fetch('http://localhost:3001/users/list', {
         headers: {

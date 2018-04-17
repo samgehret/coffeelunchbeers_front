@@ -27,6 +27,6 @@ export default withAuth(class Login extends Component {
     return this.state.authenticated
 
       ? <Redirect to={{ pathname: '/profile' }} />
-      : <LoginForm baseUrl={this.props.baseUrl} />
+      : <LoginForm submit={this.props.submit} input={this.props.input} token={this.props.token} />
   }
 })

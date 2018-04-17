@@ -1,5 +1,6 @@
 import React from 'react'
 import OktaAuth from '@okta/okta-auth-js'
+import { Redirect } from 'react-router-dom'
 import { withAuth } from '@okta/okta-react'
 
 import config from '../../app.config'
@@ -75,6 +76,7 @@ export default withAuth(class RegistrationForm extends React.Component {
       this.props.auth.redirect({ sessionToken: this.state.sessionToken })
       return null
     }
+      <Redirect to={{ pathname: '/profile' }} />
 
     return (
       <form onSubmit={this.handleSubmit}>

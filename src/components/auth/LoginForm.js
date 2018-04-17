@@ -12,61 +12,62 @@ export default withAuth(class LoginForm extends React.Component {
       password: ''
     }
 
-    this.oktaAuth = new OktaAuth({ url: props.baseUrl })
+    // this.oktaAuth = new OktaAuth({ url: props.baseUrl })
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleUsernameChange = this.handleUsernameChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    // this.handleSubmit = this.handleSubmit.bind(this)
+    // this.handleUsernameChange = this.handleUsernameChange.bind(this)
+    // this.handlePasswordChange = this.handlePasswordChange.bind(this)
   }
 
-  handleSubmit (e) {
-    e.preventDefault()
-    this.oktaAuth.signIn({
-      username: this.state.username,
-      password: this.state.password
-    })
-      .then(res => this.setState({
-        sessionToken: res.sessionToken
-      }))
-      .catch(err => {
-        this.setState({error: err.message})
-        console.log(err.statusCode + ' error', err)
-      })
-  }
+//   handleSubmit (e) {
+//     e.preventDefault()
+//     this.oktaAuth.signIn({
+//       username: this.state.username,
+//       password: this.state.password
+//     })
+//       .then(res => this.setState({
+//         sessionToken: res.sessionToken
+//       }))
+//       .catch(err => {
+//         this.setState({error: err.message})
+//         console.log(err.statusCode + ' error', err)
+//       })
+//   }
 
-  handleUsernameChange (e) {
-    this.setState({ username: e.target.value })
-  }
+//   handleUsernameChange (e) {
+//     this.setState({ username: e.target.value })
+//   }
 
-  handlePasswordChange (e) {
-    this.setState({ password: e.target.value })
-  }
+//   handlePasswordChange (e) {
+//     this.setState({ password: e.target.value })
+//   }
 
   render () {
-    if (this.state.sessionToken) {
+    if (this.props.token) {
       this.props.auth.redirect({ sessionToken: this.state.sessionToken })
       return null
     }
+    console.log(this.props.token)
 
     const errorMessage = this.state.error ? <span className='error-message'>{this.state.error}</span> : null
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.props.submit}>
         {errorMessage}
         <div className='form-element'>
           <label>Username:</label>
           <input
-            id='username' type='text'
-            value={this.state.username}
-            onChange={this.handleUsernameChange} />
+            name='username' type='text'
+            // value={this.state.username}
+            onChange={this.props.input} />
         </div>
 
         <div className='form-element'>
           <label>Password:</label>
           <input
-            id='password' type='password'
-            value={this.state.password}
-            onChange={this.handlePasswordChange} />
+            name='password' type='password'
+            // value={this.state.password}
+            onChange={this.props.input} />
         </div>
         <input id='submit' type='submit' value='Submit' />
       </form>
