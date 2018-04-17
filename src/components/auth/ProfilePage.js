@@ -9,7 +9,7 @@ export default withAuth(class ProfilePage extends React.Component {
       user: null,
       data: null }
     this.getCurrentUser = this.getCurrentUser.bind(this)
-    this.moreUserInfo = this.moreUserInfo.bind(this)
+    // this.moreUserInfo = this.moreUserInfo.bind(this)
     // this.getUsers = this.getUsers.bind(this)
   }
 
@@ -17,20 +17,20 @@ export default withAuth(class ProfilePage extends React.Component {
     this.props.auth.getUser()
       .then(user => {
         this.setState({user})
-        this.moreUserInfo()
+        // this.moreUserInfo()
         // console.log(this.state.user.sub)
       })
   }
 
-  async moreUserInfo () {
-    axios.get(`http://localhost:3001/users/${this.state.user.sub}`,
-      {
-        headers: {
-          Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
-        }
-      })
-    .then((res) => console.log(res.data))
-  }
+//   async moreUserInfo () {
+//     axios.get(`http://localhost:3001/users/${this.state.user.sub.data}`,
+//       {
+//         headers: {
+//           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
+//         }
+//       })
+//     .then((res) => console.log(res))
+//   }
 
 //   async componentDidMount () {
 //       console.log('suh')

@@ -8,6 +8,7 @@ import RegistrationForm from './components/auth/RegistrationForm'
 import config from './app.config'
 import LoginPage from './components/auth/LoginPage'
 import ProfilePage from './components/auth/ProfilePage'
+import Admin from './components/Admin/Admin'
 import './App.css'
 
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
           <Route path='/implicit/callback' component={ImplicitCallback} />
           <Route path='/register' component={RegistrationForm} />
           <SecureRoute path='/profile' component={ProfilePage} />
+          <SecureRoute path='/admin' component={Admin} />
         </main>
       </div>
     )
