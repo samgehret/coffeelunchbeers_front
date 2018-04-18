@@ -98,8 +98,11 @@ export default withAuth(class Navigation extends React.Component {
             <div className='link-item'><Link to='/coffee'>Coffee</Link></div>
             <div className='link-item'><Link to='/lunch'>Lunch</Link></div>
             <div className='link-item'><Link to='/beer'>Beer</Link></div>
-            <div className='link-item'><a href='javascript:void(0)' onClick={this.props.auth.logout}>Logout</a></div>
-            <div className='welcome'><p>Welcome {this.state.moreInfo.profile.firstName}!</p></div>
+          </div>
+          <div className='auth-right'>
+            <div className='welcome'>Welcome {this.state.moreInfo.profile.firstName}!</div>
+            <div className='welcome'><Link to='/profile'>Profile</Link></div>
+            <div className='welcome'><a href='javascript:void(0)' onClick={this.props.auth.logout}>Logout</a></div>
           </div>
         </nav>
 
