@@ -91,7 +91,7 @@ export default withAuth(class Admin extends React.Component {
     var users = this.state.users.map((user, i) => {
       return (
         <div className='user'>
-          {user.profile.firstName} {user.profile.lastName} {user.profile.email} {user.id} <a href='javascript:void(0)' onClick={() => this.newAdmin(user.id)}>Make Admin</a>
+          {user.profile.firstName} {user.profile.lastName} {user.profile.email} {user.id}<a href='javascript:void(0)' onClick={() => this.deleteUser(user.id)} >Delete</a> <a href='javascript:void(0)' onClick={() => this.newAdmin(user.id)}>Make Admin</a>
         </div>
 
       )
