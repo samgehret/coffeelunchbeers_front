@@ -11,11 +11,13 @@ export default withAuth(class Navigation extends React.Component {
       authenticated: null,
       user: null,
       moreInfo: null,
-      groups: null }
+      groups: null,
+      isAdmin: null }
 
     this.checkAuthentication = this.checkAuthentication.bind(this)
     this.getCurrentUser = this.getCurrentUser.bind(this)
     this.moreUserInfo = this.moreUserInfo.bind(this)
+    this.decideAdmin = this.decideAdmin.bind(this)
     this.checkAuthentication()
   }
 
@@ -59,7 +61,15 @@ export default withAuth(class Navigation extends React.Component {
       console.log('getting here')
       this.setState({groups: res.data})
       console.log(this.state.groups)
+      console.log('ADMIN ARRAY')
+      this.decideAdmin()
     })
+  }
+
+  decideAdmin () {
+    let admin = this.state.groups.filter(group => group.id === '00geqqpub31y8X5p00h7')
+    console.log(admin)
+    this.setState({admin: admin.length})
   }
 
   componentDidUpdate () {
@@ -67,7 +77,7 @@ export default withAuth(class Navigation extends React.Component {
   }
 
   render () {
-    if (this.state.authenticated && this.state.moreInfo) {
+    if (this.state.authenticated && this.state.moreInfo && this.state.admin === 1) {
       return (
         <nav>
           <div className='auth-nav'>
@@ -79,6 +89,18 @@ export default withAuth(class Navigation extends React.Component {
           </div>
         </nav>
       )
+    } else if (this.state.authenticated && this.state.moreInfo) {
+      return (
+        <nav>
+        <div className='auth-nav'>
+          <div className='link-item'><Link to='/profile'>Profile</Link></div>
+          <div className='link-item'><Link to='/'>Home</Link></div>
+          <div className='link-item'><a href='javascript:void(0)' onClick={this.props.auth.logout}>Logout</a></div>
+          <div className='welcome'>Welcome {this.state.moreInfo.profile.firstName}!</div>
+        </div>
+      </nav>
+
+      )
     } else {
       return (
         <nav>
@@ -88,7 +110,6 @@ export default withAuth(class Navigation extends React.Component {
             <div className='link-item'><Link to='/'>Home</Link></div>
           </div>
         </nav>
-
       )
     }
   }
