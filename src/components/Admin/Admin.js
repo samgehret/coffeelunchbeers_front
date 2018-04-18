@@ -9,11 +9,9 @@ export default withAuth(class Admin extends React.Component {
     super(props)
     this.state = {
       users: [],
-      userRoles: [],
       admins: []
     }
     this.getAllUsers = this.getAllUsers.bind(this)
-    // this.getAllUserGroups = this.getAllUserGroups.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
     this.getAllAdmin = this.getAllAdmin.bind(this)
     this.newAdmin = this.newAdmin.bind(this)
@@ -49,38 +47,26 @@ export default withAuth(class Admin extends React.Component {
     })
   }
 
+  deleteAdmin (userid) {
+    console.log('DELETINNG ADMIN')
+    axios.delete(`http://localhost:3001/users/admin/remove/${userid}`)
+    .then(this.getAllAdmin())
+    window.location.reload()
+  }
+
   deleteUser (userid) {
     console.log('DELETING')
     axios.delete(`http://localhost:3001/users/${userid}/delete`)
     .then(this.getAllUsers())
+    window.location.reload()
   }
 
   newAdmin (userid) {
     console.log('MAKING ADMIN')
     axios.put(`http://localhost:3001/users/admin/new/${userid}`)
     .then(this.getAllAdmin())
+    window.location.reload()
   }
-
-//   async getAllUserGroups () {
-//     for (let user of this.state.users) {
-//     //   console.log('hi')
-//       axios.get(`http://localhost:3001/users/${user.id}/groups`,
-//         {
-//           headers: {
-//             Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
-//           }
-//         })
-//         .then((user) => {
-//           let newUserRoles = this.state.userRoles.slice()
-//           newUserRoles.push(user.data)
-//           this.setState({userRoles: newUserRoles})
-//         //   console.log('user role while loop')
-//         //   console.log(this.state.userRoles)
-//         })
-//     }
-//     console.log('user roles')
-//     console.log(this.state.userRoles)
-//   }
 
   componentDidMount () {
     this.getAllUsers()
@@ -99,7 +85,7 @@ export default withAuth(class Admin extends React.Component {
     var admins = this.state.admins.map((admin, i) => {
       return (
         <div className='user'>
-          {admin.profile.firstName} {admin.profile.lastName} {admin.profile.email} {admin.id}
+          {admin.profile.firstName} {admin.profile.lastName} {admin.profile.email} {admin.id} <a href='javascript:void(0)' onClick={() => this.deleteAdmin(admin.id)} > DELETE ADMIN </a>
         </div>
       )
     })
