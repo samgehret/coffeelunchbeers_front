@@ -36,7 +36,6 @@ export default withAuth(class Navigation extends React.Component {
       .then(user => {
         this.setState({user})
         this.moreUserInfo()
-        console.log(this.state.user.name)
       })
   }
 
@@ -49,7 +48,6 @@ export default withAuth(class Navigation extends React.Component {
       })
     .then((res) => {
       this.setState({moreInfo: res.data})
-      console.log(this.state.moreInfo)
     })
     axios.get(`http://localhost:3001/users/${this.state.user.sub}/groups`,
       {
@@ -58,17 +56,13 @@ export default withAuth(class Navigation extends React.Component {
         }
       })
     .then((res) => {
-      console.log('getting here')
       this.setState({groups: res.data})
-      console.log(this.state.groups)
-      console.log('ADMIN ARRAY')
       this.decideAdmin()
     })
   }
 
   decideAdmin () {
     let admin = this.state.groups.filter(group => group.id === '00geqqpub31y8X5p00h7')
-    console.log(admin)
     this.setState({admin: admin.length})
   }
 
