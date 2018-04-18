@@ -17,12 +17,13 @@ export default class App extends Component {
       <div className='App'>
         <Navigation />
         <main>
-          <Route path='/' exact component={HomePage} />
+          
           <Route path='/login' render={() => <LoginPage baseUrl={config.url} />} />
           <Route path='/implicit/callback' component={ImplicitCallback} />
           <Route path='/register' component={RegistrationForm} />
-          <SecureRoute path='/profile' component={ProfilePage} />
-          <SecureRoute path='/admin' component={Admin} />
+          <SecureRoute exact path='/profile' component={ProfilePage} />
+          <SecureRoute exact path='/admin' component={Admin} />
+          <Route path='/' exact component={HomePage} />
         </main>
       </div>
     )
