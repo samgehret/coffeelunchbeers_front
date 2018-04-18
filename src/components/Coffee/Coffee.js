@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+import CoffeShop from './CoffeeShop'
 
 export default class Coffee extends React.Component {
   constructor (props) {
@@ -25,9 +27,11 @@ export default class Coffee extends React.Component {
   render () {
     var coffeespots = this.state.coffeeShops.map((shop, i) => {
       return (
-        <div key={i}>
-          {shop.name}
-        </div>
+        <Link to={`/coffee/${shop._id}`}>
+          <div key={i}>
+            {shop.name}
+          </div>
+        </Link>
       )
     })
     console.log(coffeespots)

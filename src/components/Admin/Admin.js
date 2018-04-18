@@ -56,7 +56,7 @@ export default withAuth(class Admin extends React.Component {
 
   decideAdmin () {
     let admin = this.state.groups.filter(group => group.id === '00geqqpub31y8X5p00h7')
-    this.setState({admin: admin.length})
+    this.setState({isAdmin: admin.length})
     console.log('ADMIN CHECK')
     console.log(this.state.isAdmin)
   }
@@ -95,25 +95,25 @@ export default withAuth(class Admin extends React.Component {
     console.log('DELETINNG ADMIN')
     axios.delete(`http://localhost:3001/users/admin/remove/${userid}`)
     .then(this.getAllAdmin())
-    window.location.reload()
+    // window.location.reload()
   }
 
   deleteUser (userid) {
     console.log('DELETING')
     axios.delete(`http://localhost:3001/users/${userid}/delete`)
     .then(this.getAllUsers())
-    window.location.reload()
+    // window.location.reload()
   }
 
   newAdmin (userid) {
     console.log('MAKING ADMIN')
     axios.put(`http://localhost:3001/users/admin/new/${userid}`)
     .then(this.getAllAdmin())
-    window.location.reload()
+    // window.location.reload()
   }
 
-  componentDidMount () {
-    // this.getCurrentUser()
+  componentWillMount () {
+    this.getCurrentUser()
     this.getAllUsers()
     this.getAllAdmin()
   }
@@ -134,19 +134,26 @@ export default withAuth(class Admin extends React.Component {
         </div>
       )
     })
-    return (
-      <div>
-        <h1>All Users</h1>
 
-        <div className='usercontainer'>
-          {users}
-        </div>
-        <h1>All Admin</h1>
+    if (this.state.isAdmin === 1) {
+      return (
+        <div>
+          <h1>All Users</h1>
 
-        <div className='usercontainer'>
-          {admins}
+          <div className='usercontainer'>
+            {users}
+          </div>
+          <h1>All Admin</h1>
+
+          <div className='usercontainer'>
+            {admins}
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <p>No access to this page</p>
+      )
+    }
   }
 })
