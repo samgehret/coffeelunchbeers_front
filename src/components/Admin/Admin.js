@@ -1,7 +1,6 @@
 import React from 'react'
 import { withAuth } from '@okta/okta-react'
 import axios from 'axios'
-import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
 export default withAuth(class Admin extends React.Component {

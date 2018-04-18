@@ -11,3 +11,11 @@
     margin-left: auto;
     margin-right: 20px;
 }
+
+.auth-right {
+    display: flex;
+}
+
+nav {
+    display: flex;
+}
