@@ -9,12 +9,57 @@ export default withAuth(class Admin extends React.Component {
     super(props)
     this.state = {
       users: [],
-      admins: []
+      admins: [],
+      user: null,
+      moreInfo: null,
+      groups: null,
+      isAdmin: null
     }
     this.getAllUsers = this.getAllUsers.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
     this.getAllAdmin = this.getAllAdmin.bind(this)
     this.newAdmin = this.newAdmin.bind(this)
+    this.getCurrentUser = this.getCurrentUser.bind(this)
+    this.moreUserInfo = this.moreUserInfo.bind(this)
+    this.decideAdmin = this.decideAdmin.bind(this)
+  }
+  async getCurrentUser () {
+    this.props.auth.getUser()
+      .then(user => {
+        this.setState({user})
+        this.moreUserInfo()
+      })
+  }
+
+  async moreUserInfo () {
+    axios.get(`http://localhost:3001/users/${this.state.user.sub}`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
+        }
+      })
+    .then((res) => {
+      this.setState({moreInfo: res.data})
+    })
+    axios.get(`http://localhost:3001/users/${this.state.user.sub}/groups`,
+      {
+        headers: {
+          Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
+        }
+      })
+    .then((res) => {
+      this.setState({groups: res.data})
+      console.log('GRPUPS')
+      console.log(this.state.groups)
+      this.decideAdmin()
+    })
+  }
+
+  decideAdmin () {
+    let admin = this.state.groups.filter(group => group.id === '00geqqpub31y8X5p00h7')
+    this.setState({admin: admin.length})
+    console.log('ADMIN CHECK')
+    console.log(this.state.isAdmin)
   }
 
   async getAllUsers () {
@@ -69,6 +114,7 @@ export default withAuth(class Admin extends React.Component {
   }
 
   componentDidMount () {
+    // this.getCurrentUser()
     this.getAllUsers()
     this.getAllAdmin()
   }

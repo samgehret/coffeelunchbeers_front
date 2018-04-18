@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { SecureRoute, ImplicitCallback } from '@okta/okta-react'
+import axios from 'axios'
+import { withAuth } from '@okta/okta-react'
 
 import Navigation from './components/shared/Navigation'
 import HomePage from './components/Home/HomePage'
@@ -11,13 +13,13 @@ import ProfilePage from './components/auth/ProfilePage'
 import Admin from './components/Admin/Admin'
 import './App.css'
 
-export default class App extends Component {
+export default withAuth(class App extends Component {
   render () {
     return (
       <div className='App'>
         <Navigation />
         <main>
-          
+
           <Route path='/login' render={() => <LoginPage baseUrl={config.url} />} />
           <Route path='/implicit/callback' component={ImplicitCallback} />
           <Route path='/register' component={RegistrationForm} />
@@ -28,4 +30,4 @@ export default class App extends Component {
       </div>
     )
   }
-}
+})
