@@ -3,6 +3,7 @@ import { withAuth } from '@okta/okta-react'
 import axios from 'axios'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
+import config from '../../app.config'
 
 export default withAuth(class Admin extends React.Component {
   constructor (props) {
@@ -32,7 +33,7 @@ export default withAuth(class Admin extends React.Component {
   }
 
   async moreUserInfo () {
-    axios.get(`http://localhost:3001/users/${this.state.user.sub}`,
+    axios.get(`${config.serverUrl}/users/${this.state.user.sub}`,
       {
         headers: {
           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
@@ -41,7 +42,7 @@ export default withAuth(class Admin extends React.Component {
     .then((res) => {
       this.setState({moreInfo: res.data})
     })
-    axios.get(`http://localhost:3001/users/${this.state.user.sub}/groups`,
+    axios.get(`${config.serverUrl}/users/${this.state.user.sub}/groups`,
       {
         headers: {
           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
@@ -63,7 +64,7 @@ export default withAuth(class Admin extends React.Component {
   }
 
   async getAllUsers () {
-    axios.get(`http://localhost:3001/users/list`,
+    axios.get(`${config.serverUrl}/users/list`,
       {
         headers: {
           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
@@ -78,7 +79,7 @@ export default withAuth(class Admin extends React.Component {
   }
 
   async getAllAdmin () {
-    axios.get(`http://localhost:3001/users/admin`,
+    axios.get(`${config.serverUrl}/users/admin`,
       {
         headers: {
           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
@@ -94,21 +95,21 @@ export default withAuth(class Admin extends React.Component {
 
   deleteAdmin (userid) {
     console.log('DELETINNG ADMIN')
-    axios.delete(`http://localhost:3001/users/admin/remove/${userid}`)
+    axios.delete(`${config.serverUrl}/users/admin/remove/${userid}`)
     .then(this.getAllAdmin())
     // window.location.reload()
   }
 
   deleteUser (userid) {
     console.log('DELETING')
-    axios.delete(`http://localhost:3001/users/${userid}/delete`)
+    axios.delete(`${config.serverUrl}/users/${userid}/delete`)
     .then(this.getAllUsers())
     window.location.reload()
   }
 
   newAdmin (userid) {
     console.log('MAKING ADMIN')
-    axios.put(`http://localhost:3001/users/admin/new/${userid}`)
+    axios.put(`${config.serverUrl}/users/admin/new/${userid}`)
     .then(this.getAllAdmin())
     window.location.reload()
   }
