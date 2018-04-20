@@ -26,7 +26,7 @@ export default withAuth(class App extends Component {
             <Route path='/register' component={RegistrationForm} />
             <Route exact path='/coffee/:id' component={CoffeeShop} />
             <Route path='/coffee' component={Coffee} />
-            
+
             <Route path='/lunch' component={Lunch} />
             <Route path='/beer' component={Beer} />
             <SecureRoute exact path='/profile' component={ProfilePage} />

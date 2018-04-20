@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import config from '../../app.config'
 
 class Signup extends Component {
   constructor () {
@@ -24,7 +25,7 @@ class Signup extends Component {
 
   handleSignUp (e) {
     e.preventDefault()
-    axios.post('http://localhost:3001/users', {
+    axios.post(`${config.serverUrl}/users`, {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
@@ -55,7 +56,6 @@ class Signup extends Component {
           <input type='text' name='mobilePhone' maxLength='25' onChange={this.handleInput} />
           <label>Password</label>
           <input type='password' name='password' maxLength='25' onChange={this.handleInput} />
-
 
           <input value='submit' type='submit' onClick={this.handleSignUp} />
         </form>

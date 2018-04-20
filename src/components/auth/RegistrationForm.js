@@ -52,7 +52,7 @@ export default withAuth(class RegistrationForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    fetch('http://localhost:3001/users/new', {
+    fetch(`${config.serverUrl}/users/new`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

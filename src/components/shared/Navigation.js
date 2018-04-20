@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { withAuth } from '@okta/okta-react'
 import './Navigation.css'
 import axios from 'axios'
+import config from '../../app.config'
 
 export default withAuth(class Navigation extends React.Component {
   constructor (props) {
@@ -40,7 +41,7 @@ export default withAuth(class Navigation extends React.Component {
   }
 
   async moreUserInfo () {
-    axios.get(`http://localhost:3001/users/${this.state.user.sub}`,
+    axios.get(`${config.serverUrl}/users/${this.state.user.sub}`,
       {
         headers: {
           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
@@ -49,7 +50,7 @@ export default withAuth(class Navigation extends React.Component {
     .then((res) => {
       this.setState({moreInfo: res.data})
     })
-    axios.get(`http://localhost:3001/users/${this.state.user.sub}/groups`,
+    axios.get(`${config.serverUrl}/users/${this.state.user.sub}/groups`,
       {
         headers: {
           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()

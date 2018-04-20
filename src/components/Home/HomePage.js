@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withAuth } from '@okta/okta-react'
 import { Link } from 'react-router-dom'
+import config from '../../app.config'
 
 export default withAuth(class Home extends Component {
   constructor (props) {
@@ -11,7 +12,7 @@ export default withAuth(class Home extends Component {
     console.log(token)
     console.log('home')
     try {
-      const response = await fetch('http://localhost:3001/users/list', {
+      const response = await fetch(`${config.serverUrl}/users/list`, {
         headers: {
           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
         }
