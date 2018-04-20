@@ -28,10 +28,10 @@ export default withAuth(class Home extends Component {
 
   render () {
     return (
-      <div>
-        <nav className='nav'>
-          <h1> This will be the home page </h1>
-        </nav>
+      <div className='home'>
+        <h1> COFFEE LUNCH BEERS</h1>
+        <p>Welcome to COFFEE, LUNCH, BEERS. An App for GA Students, by GA Students</p>
+
       </div>
     )
   }

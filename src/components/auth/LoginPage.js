@@ -26,7 +26,7 @@ export default withAuth(class Login extends Component {
     if (this.state.authenticated === null) return null
     return this.state.authenticated
 
-      ? <Redirect to={{ pathname: '/profile' }} />
+      ? <Redirect to={{ pathname: '/' }} />
       : <LoginForm baseUrl={this.props.baseUrl} />
   }
 })

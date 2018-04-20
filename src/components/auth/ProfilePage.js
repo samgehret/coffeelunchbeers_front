@@ -9,20 +9,28 @@ export default withAuth(class ProfilePage extends React.Component {
       user: null,
       data: null }
     this.getCurrentUser = this.getCurrentUser.bind(this)
-    this.getUsers = this.getUsers.bind(this)
+    // this.moreUserInfo = this.moreUserInfo.bind(this)
+    // this.getUsers = this.getUsers.bind(this)
   }
 
   async getCurrentUser () {
     this.props.auth.getUser()
       .then(user => {
         this.setState({user})
-        // console.log(user)
+        // this.moreUserInfo()
+        // console.log(this.state.user.sub)
       })
   }
 
-  getUsers () {
-    console.log('suh')
-  }
+//   async moreUserInfo () {
+//     axios.get(`http://localhost:3001/users/${this.state.user.sub.data}`,
+//       {
+//         headers: {
+//           Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
+//         }
+//       })
+//     .then((res) => console.log(res))
+//   }
 
 //   async componentDidMount () {
 //       console.log('suh')
@@ -37,22 +45,22 @@ export default withAuth(class ProfilePage extends React.Component {
 
   async componentDidMount () {
     this.getCurrentUser()
-    this.getUsers()
-    var token = await this.props.auth.getAccessToken()
-    console.log(token)
-    try {
-      const response = await fetch('http://localhost:3001/users/list', {
-        headers: {
-          Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
-        }
-      })
-      const data = await response.json()
-      this.setState({ data: data })
-      console.log(data)
-    } catch (err) {
+    // this.getUsers()
+    // var token = await this.props.auth.getAccessToken()
+    // console.log(token)
+    // try {
+    //   const response = await fetch('http://localhost:3001/users/list', {
+    //     headers: {
+    //       Authorization: 'Bearer ' + await this.props.auth.getAccessToken()
+    //     }
+    //   })
+    //   const data = await response.json()
+    //   this.setState({ data: data })
+    //   console.log(data)
+    // } catch (err) {
 
-        // handle error as needed
-    }
+    //     // handle error as needed
+    // }
   }
 
   render () {

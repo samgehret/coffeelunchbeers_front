@@ -1,6 +1,7 @@
 import React from 'react'
 import OktaAuth from '@okta/okta-auth-js'
 import { withAuth } from '@okta/okta-react'
+import { Redirect } from 'react-router-dom'
 
 export default withAuth(class LoginForm extends React.Component {
   constructor (props) {
@@ -45,7 +46,9 @@ export default withAuth(class LoginForm extends React.Component {
   render () {
     if (this.state.sessionToken) {
       this.props.auth.redirect({ sessionToken: this.state.sessionToken })
-      return null
+      return (
+        <Redirect to={{ pathname: '/profile' }} />
+      )
     }
 
     const errorMessage = this.state.error ? <span className='error-message'>{this.state.error}</span> : null
