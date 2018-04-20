@@ -97,7 +97,7 @@ export default withAuth(class Admin extends React.Component {
     console.log('DELETINNG ADMIN')
     axios.delete(`${config.serverUrl}/users/admin/remove/${userid}`)
     .then(this.getAllAdmin())
-    // window.location.reload()
+    window.location.reload()
   }
 
   deleteUser (userid) {

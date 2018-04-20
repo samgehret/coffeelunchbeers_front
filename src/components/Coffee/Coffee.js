@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import CoffeShop from './CoffeeShop'
 import config from '../../app.config'
 
 export default class Coffee extends React.Component {

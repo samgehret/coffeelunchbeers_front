@@ -57,7 +57,6 @@ class Signup extends Component {
           <label>Password</label>
           <input type='password' name='password' maxLength='25' onChange={this.handleInput} />
 
-
           <input value='submit' type='submit' onClick={this.handleSignUp} />
         </form>
       </div>
